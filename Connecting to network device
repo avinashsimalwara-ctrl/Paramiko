@@ -10,3 +10,5 @@ print(ssh_client.get_transport().is_active())
 
 print('Closing connection')
 ssh_client.close()
+
+### using this code, we have to define every new device in ssh.client.connect with a seperate line of code
