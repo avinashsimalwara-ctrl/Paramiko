@@ -36,3 +36,20 @@ for router in routers:
         f.write(output)
 
     myparamiko.close(client)
+
+router1 = {'server_ip':'10.1.1.10', 'server_port': '22', 'user': 'u1', 'passwd': 'cisco'}
+router2 = {'server_ip':'10.1.1.20', 'server_port': '22', 'user': 'u1', 'passwd': 'cisco'}
+router3 = {'server_ip':'10.1.1.30', 'server_port': '22', 'user': 'u1', 'passwd': 'cisco'}
+
+routers = [router1, router2, router3]
+
+threads = list()
+for router in routers:
+    th = threading.Thread(target=backup, args=(router,))
+    threads.append(th)  # appending the thread to the list
+
+for th in threads:
+    th.start()
+
+for th in threads:
+    th.join()
